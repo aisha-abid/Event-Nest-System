@@ -1,0 +1,68 @@
+// backend/data/seedFood.js
+const foodData = {
+    starters: [
+    { name: "Lamb Seekh Kebab", price: 2 },
+    { name: "Chicken Seekh Kebab", price: 1.5 },
+    { name: "Chicken Malai Boti", price: 1.5 },
+    { name: "Fish Fry", price: 2 },
+    { name: "Spicy Honey Wings", price: 2 },
+    { name: "Vegetable Spring Rolls", price: 1.5 },
+    { name: "Mongolian Wings", price: 2 },
+    { name: "Beef Tikka", price: 2.5 },
+  ],
+  salads: [
+    { name: "Kachumar Salad", price: 1 },
+    { name: "Red Beans Salad", price: 1.5 },
+    { name: "Russian Salad", price: 1.5 },
+    { name: "Caprese Salad", price: 2 },
+  ],
+  mainCourse: [
+    { name: "Chicken Handi (½ kg, serves 2–3)", price: 4.5 },
+    { name: "Mutton Qorma (½ kg, serves 2–3)", price: 6.5 },
+    { name: "Biryani / Pulao (per plate)", price: 2 },
+    { name: "Chicken Shashlik (with rice)", price: 2.5 },
+    { name: "Egg Fried Rice", price: 1.5 },
+    { name: "Chicken Butter Masala", price: 3.5 },
+    { name: "Chicken Steak (with sides)", price: 3.5 },
+    { name: "Beef Steak (with sides)", price: 4.5 },
+    { name: "Mutton Karahi (½ kg)", price: 6.5 },
+    { name: "Dam ka Keema", price: 3 },
+    { name: "Beef Haleem", price: 2.5 },
+    { name: "Beef Nihari", price: 2.5 },
+  ],
+  drinks: [
+    { name: "Mineral Water (small)", price: 0.5 },
+    { name: "Avocado Smoothie", price: 1.5 },
+    { name: "Black Berry Smoothie", price: 1.5 },
+    { name: "Cold Coffee", price: 1.5 },
+    { name: "Mango Smoothie", price: 1.5 },
+    { name: "Apple Juice", price: 1 },
+    { name: "Orange Juice", price: 1 },
+    { name: "Pina Colada", price: 2 },
+    { name: "Strawberry Smoothie", price: 1.5 },
+    { name: "Soft Drinks (Coke/Sprite/7up)", price: 1 },
+  ],
+  beverages: [
+    { name: "Coffee", price: 1 },
+    { name: "Green Tea", price: 1 },
+    { name: "Pink Tea", price: 1.5 },
+    { name: "Tea", price: 0.5 },
+  ],
+  desserts: [
+    { name: "Gajar Halwa (single serving)", price: 1.5 },
+    { name: "Kheer (per bowl)", price: 1 },
+    { name: "Shahi Tukray", price: 1.5 },
+    { name: "Rasmalai (2 pcs)", price: 1.5 },
+    { name: "Red Velvet Slice", price: 2 },
+    { name: "Lotus Cheese Cake Slice", price: 2.5 },
+    { name: "Black Forest Cake Slice", price: 2 },
+    { name: "Tiramisu Slice", price: 2 },
+    { name: "Vanilla Ice Cream", price: 0.5 },
+    { name: "Chocolate Ice Cream", price: 0.5 },
+    { name: "Strawberry Ice Cream", price: 0.5 },
+    { name: "Mango Ice Cream", price: 0.5 },
+  ],
+
+};
+
+export default foodData;

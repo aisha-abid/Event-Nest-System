@@ -1,0 +1,31 @@
+# Node modules
+client/node_modules/
+server/node_modules/
+
+# Environment files
+client/.env
+server/.env
+
+server/config/config.env
+
+# Logs
+*.log
+logs/
+
+# Build / dist
+client/dist/
+server/dist/
+server/build/
+
+# OS files
+.DS_Store
+
+# IDE folders
+.vscode/
+.idea/
+
+# SSL / PEM keys
+*.pem
+
+# Optional: coverage
+coverage/
