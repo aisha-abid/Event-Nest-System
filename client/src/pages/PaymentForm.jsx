@@ -53,7 +53,7 @@ const PaymentForm = ({ amount = 0,  bookingId }) => {
 
       // 1) Backend: PaymentIntent with authentication
       const { data } = await axios.post(
-        "https://localhost:5000/api/v1/payment/pay",
+        "http://localhost:5000/api/v1/payment/pay",
         { amount, bookingId, name},
         {
           headers: {
@@ -78,7 +78,7 @@ const PaymentForm = ({ amount = 0,  bookingId }) => {
       } else if (result.paymentIntent?.status === "succeeded") {
         // 3) Backend: mark as confirmed with authentication
         await axios.post(
-          "https://localhost:5000/api/v1/payment/confirm",
+          "http://localhost:5000/api/v1/payment/confirm",
           {
             paymentId,
             paymentIntentId: result.paymentIntent.id,

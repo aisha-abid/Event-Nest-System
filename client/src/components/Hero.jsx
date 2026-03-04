@@ -29,7 +29,7 @@ const checkAvailability = async (e) => {
     // ✅ Step 2: Availability check code
    try {
       const res = await axios.post(
-        "https://localhost:5000/api/v1/bookings/check-availability",
+        "http://localhost:5000/api/v1/bookings/check-availability",
         {
           eventDate: formData.eventDate,
           eventTime: formData.eventTime,

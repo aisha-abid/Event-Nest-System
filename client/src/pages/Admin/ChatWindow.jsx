@@ -4,7 +4,7 @@ import axios from 'axios'
 import { io } from "socket.io-client";
 
 //  Make sure REACT_APP_SOCKET_URL is set (e.g., http://localhost:5000)
-const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || "https://localhost:5000";
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || "http://localhost:5000";
 
 const ChatWindow = ({ user }) => {
   const [isScrolled, setIsScrolled] = useState(false);

@@ -44,10 +44,10 @@ const AuthForm = ({ onLogin }) => {
       let payload = {};
 
       if (state === "register") {
-        url = "https://localhost:5000/api/v1/auth/register";
+        url = "http://localhost:5000/api/v1/auth/register";
         payload = { name, email, password };
       } else {
-        url = "https://localhost:5000/api/v1/auth/login";
+        url = "http://localhost:5000/api/v1/auth/login";
         payload = { email, password };
       }
 

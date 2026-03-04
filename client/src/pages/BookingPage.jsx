@@ -137,7 +137,7 @@ const BookingPage = () => {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.post(
-        "https://localhost:5000/api/v1/bookings/create",
+        "http://localhost:5000/api/v1/bookings/create",
         data,
         {
           headers: {
@@ -174,7 +174,7 @@ const BookingPage = () => {
         ];
         
         const requests = categories.map((cat) =>
-          axios.get(`https://localhost:5000/api/v1/foods/category/${cat}`)
+          axios.get(`http://localhost:5000/api/v1/foods/category/${cat}`)
         );
 
         const responses = await Promise.all(requests);

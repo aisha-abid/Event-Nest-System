@@ -45,7 +45,7 @@ const UpdateBooking = () => {
       try {
         // Booking detail
         const bookingRes = await axios.get(
-          `https://localhost:5000/api/v1/customers/${id}`,
+          `http://localhost:5000/api/v1/customers/${id}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
 
@@ -70,7 +70,7 @@ const UpdateBooking = () => {
         ];
 
         const requests = categories.map((cat) =>
-          axios.get(`https://localhost:5000/api/v1/foods/category/${cat}`, {
+          axios.get(`http://localhost:5000/api/v1/foods/category/${cat}`, {
             headers: { Authorization: `Bearer ${token}` },
           })
         );
@@ -136,7 +136,7 @@ const UpdateBooking = () => {
 
     try {
       await axios.put(
-        `https://localhost:5000/api/v1/customers/update/${id}`,
+        `http://localhost:5000/api/v1/customers/update/${id}`,
         formData,
         { headers: { Authorization: `Bearer ${token}` } }
       );

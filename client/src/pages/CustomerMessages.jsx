@@ -3,7 +3,7 @@ import axios from "axios";
 import { FiSend } from "react-icons/fi";
 import { io } from "socket.io-client";
 
-const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || "https://localhost:5000";
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || "http://localhost:5000";
 
 const CustomerMessages = () => {
   const [messages, setMessages] = useState([]);

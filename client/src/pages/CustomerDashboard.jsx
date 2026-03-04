@@ -53,7 +53,7 @@ const [selectedBooking, setSelectedBooking] = useState(null);
     const token = localStorage.getItem("token");
 
     const res = await axios.post(
-      `https://localhost:5000/api/v1/refund`,
+      `http://localhost:5000/api/v1/refund`,
       { bookingId },
       { headers: { Authorization: `Bearer ${token}` } }
     );

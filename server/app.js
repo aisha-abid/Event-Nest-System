@@ -20,9 +20,7 @@ const app = express();
 
 app.use(cors({
   //check code ok
-  origin: "https://localhost:5173", // frontend ka URL
-    // origin: "https://localhost:5175", 
-
+  origin: process.env.FRONTEND_URL, // frontend ka URL 
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
   credentials: true, // agar cookies/token use kar rahe ho
 }));

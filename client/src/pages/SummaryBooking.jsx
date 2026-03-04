@@ -11,7 +11,7 @@ const SummaryBooking = () => {
     const fetchBooking = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('https://localhost:5000/api/v1/bookings/my-bookings', {
+        const res = await axios.get('http://localhost:5000/api/v1/bookings/my-bookings', {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (res.data && res.data.length > 0) {

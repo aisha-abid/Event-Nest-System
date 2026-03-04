@@ -16,7 +16,7 @@ const AllBookings = () => {
         console.log(localStorage.getItem("token"));
 
         const { data } = await axios.get(
-          "https://localhost:5000/api/v1/admin/all-bookings",
+          "http://localhost:5000/api/v1/admin/all-bookings",
           { headers: { Authorization: `Bearer ${token}` } }
         );
         setBookings(data.bookings || data);
