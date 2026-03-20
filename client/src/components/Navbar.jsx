@@ -7,6 +7,7 @@ import AuthForm from "./AuthForm";
 import axios from 'axios'
 import { io } from "socket.io-client";
 import { showCustomToast } from "../utils/toastUtils";
+import { buildApiUrl, SOCKET_URL } from "../config/api";
 
 const BookIcon = () => (
   <svg
@@ -55,7 +56,7 @@ const Navbar = ({ user= null, onLogout=() => {} , onLogin = () => {} }) => {
   useEffect(() => {
   if (!user || !isCustomerDashboard) return;
 
-  const socket = io(import.meta.env.VITE_API_URL, {
+  const socket = io(SOCKET_URL, {
     auth: { token: localStorage.getItem("token") }
   });
 
@@ -77,7 +78,7 @@ useEffect(() => {
      // optional: backend pe bhi reset
     const token = localStorage.getItem("token");
     if (token) {
-      axios.post("/api/v1/messages/mark-read", {}, {
+      axios.post(buildApiUrl("/api/v1/messages/mark-read"), {}, {
         headers: { Authorization: `Bearer ${token}` }
       }).catch(err => console.error("Error marking messages as read:", err));
     }
@@ -105,7 +106,7 @@ useEffect(() => {
       const token = localStorage.getItem("token");
       if (!token) return;
 
-      const res = await axios.get("/api/v1/messages/unread-count", {
+      const res = await axios.get(buildApiUrl("/api/v1/messages/unread-count"), {
         headers: { Authorization: `Bearer ${token}` }
       });
       setUnreadCount(res.data.unreadCount || 0);

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios'
+import { buildApiUrl } from "../../config/api";
 
 const AdminMessageList = () => {
 const [users, setUsers] = useState([]);
@@ -11,7 +12,7 @@ useEffect(() => {
   const fetchUsers = async () => {
     try {
       const token = localStorage.getItem("token"); // <-- add this
-      const res = await axios.get("/api/v1/messages/users", {
+      const res = await axios.get(buildApiUrl("/api/v1/messages/users"), {
         headers: { Authorization: `Bearer ${token}` },
       });
       console.log("Response:",res.data); // yahan check karo

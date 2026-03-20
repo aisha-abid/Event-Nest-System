@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { FiSend } from "react-icons/fi";
 import axios from 'axios'
 import { io } from "socket.io-client";
-import { SOCKET_URL } from "../../config/api";
+import { buildApiUrl, SOCKET_URL } from "../../config/api";
 
 //  Make sure VITE_SOCKET_URL is set for the deployed backend/socket origin.
 
@@ -27,7 +27,7 @@ const ChatWindow = ({ user }) => {
     const fetchMessages = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get(`/api/v1/messages/${user._id}`, {
+        const res = await axios.get(buildApiUrl(`/api/v1/messages/${user._id}`), {
           headers: { Authorization: `Bearer ${token}` }
         });
         setMessages(res.data.messages || []);
@@ -89,7 +89,7 @@ const ChatWindow = ({ user }) => {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.post(
-        `/api/v1/messages/${user._id}/reply`,
+        buildApiUrl(`/api/v1/messages/${user._id}/reply`),
         { text: newMsg },
         { headers: { Authorization: `Bearer ${token}` } }
       );

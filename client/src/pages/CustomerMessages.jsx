@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { FiSend } from "react-icons/fi";
 import { io } from "socket.io-client";
-import { SOCKET_URL } from "../config/api";
+import { buildApiUrl, SOCKET_URL } from "../config/api";
 
 const CustomerMessages = () => {
   const [messages, setMessages] = useState([]);
@@ -28,7 +28,7 @@ const CustomerMessages = () => {
     if (!token) return;
     const fetchMessages = async () => {
       try {
-        const res = await axios.get(`/api/v1/messages`, {
+        const res = await axios.get(buildApiUrl(`/api/v1/messages`), {
           headers: { Authorization: `Bearer ${token}` },
         });
         setMessages(res.data.messages || []);
@@ -80,7 +80,7 @@ const CustomerMessages = () => {
     try {
       // 1. Save in DB
       const res = await axios.post(
-        "/api/v1/messages",
+        buildApiUrl("/api/v1/messages"),
         { text: newMessage ,sender: "customer"},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -96,6 +96,12 @@ const CustomerMessages = () => {
     } catch (err) {
       console.error("Error sending message:", err);
     }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key !== "Enter" || e.nativeEvent.isComposing) return;
+    e.preventDefault();
+    handleSend();
   };
 
   return (
@@ -141,9 +147,10 @@ const CustomerMessages = () => {
           placeholder="Type a message..."
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && handleSend()}
+          onKeyDown={handleKeyDown}
         />
         <button
+          type="button"
           onClick={handleSend}
           className=" bg-[#51abcc] hover:bg-cyan-500 text-white p-3 rounded-full transition duration-300"
         >
