@@ -16,6 +16,7 @@ const CustomerDashboard = ({ user }) => {
   const navigate = useNavigate(); 
   // ✅ state for modal
 const [selectedBooking, setSelectedBooking] = useState(null);
+  const bookingList = Array.isArray(bookings) ? bookings : [];
 
 
   useEffect(() => {
@@ -32,7 +33,7 @@ const [selectedBooking, setSelectedBooking] = useState(null);
           headers: { Authorization: `Bearer ${token}` }
         });
 
-        setBookings(data);
+        setBookings(Array.isArray(data) ? data : data?.bookings || []);
       } catch (err) {
         console.error("Error fetching bookings:", err);
         setError(err.response?.data?.message || err.message || "Failed to fetch bookings.");
@@ -167,7 +168,7 @@ const handleCancelConfirm = async () => {
           </thead>
 
           <tbody className='text-sm'>
-            {bookings.map((item, index) => (
+            {bookingList.map((item, index) => (
               <tr key={index}>
                  <td className='py-3 px-4 text-gray-700 border-t border-gray-300'>{item.name}</td>
                 <td className='py-3 px-4 text-gray-700 border-t border-gray-300'>{item.eventType}</td>
@@ -315,7 +316,7 @@ const handleCancelConfirm = async () => {
 
        {/* ✅ CARDS for Mobile */}
     <div className="lg:hidden mt-5 space-y-4">
-      {bookings.map((item, index) => (
+      {bookingList.map((item, index) => (
         <div key={index} className="border rounded-lg p-4 shadow-sm bg-white">
           <p><span className="font-semibold">Name:</span> {item.name}</p>
           <p><span className="font-semibold">Event:</span> {item.eventType}</p>

@@ -6,6 +6,7 @@ import axios from 'axios'
 
 const AdminMessageList = () => {
 const [users, setUsers] = useState([]);
+const userList = Array.isArray(users) ? users : [];
 useEffect(() => {
   const fetchUsers = async () => {
     try {
@@ -14,7 +15,7 @@ useEffect(() => {
         headers: { Authorization: `Bearer ${token}` },
       });
       console.log("Response:",res.data); // yahan check karo
-      setUsers(res.data.users || []); // correct key
+      setUsers(Array.isArray(res.data?.users) ? res.data.users : []); // correct key
      
     } catch (err) {
       console.error("Error fetching customers", err);
@@ -35,7 +36,7 @@ useEffect(() => {
 
       {/* Customers List */}
       <div className="flex-1 overflow-y-auto p-4 space-y-3">
-        {users.map((user) => (
+        {userList.map((user) => (
           <Link
             key={user._id}
             to={`/admin/messages/${user._id}`}
@@ -67,7 +68,7 @@ useEffect(() => {
         ))}
 
         {/* If no customers */}
-        {users.length === 0 && (
+        {userList.length === 0 && (
           <p className="text-gray-500 text-center mt-10 text-lg">
             No customers found.
           </p>

@@ -11,6 +11,9 @@ const Dashboard = () => {
         cancelRequests:0,
         recentBookings:[]
     });
+    const recentBookings = Array.isArray(dashboardData.recentBookings)
+      ? dashboardData.recentBookings
+      : [];
 
     useEffect(() => {
         const fetchDashboardStats =async () =>{
@@ -19,7 +22,11 @@ const Dashboard = () => {
                 const res = await axios.get("/api/v1/admin/dashboard-stats",{
                 headers: { Authorization: `Bearer ${token}` }
                 });
-                setDashboardData(res.data);
+                setDashboardData({
+                    totalBookings: res.data?.totalBookings || 0,
+                    cancelRequests: res.data?.cancelRequests || 0,
+                    recentBookings: Array.isArray(res.data?.recentBookings) ? res.data.recentBookings : []
+                });
             }
             catch (error) {
         console.error("Error fetching dashboard stats:", error);
@@ -83,8 +90,8 @@ const Dashboard = () => {
                 </thead>
                  
                  <tbody className="text-sm">
-  {dashboardData.recentBookings && dashboardData.recentBookings.length > 0 ? (
-    dashboardData.recentBookings.map((booking, index) => (
+  {recentBookings.length > 0 ? (
+    recentBookings.map((booking, index) => (
       <tr key={index} className="border-t">
         <td className="py-3 px-4 text-gray-700">{booking.userId?.name || "N/A"}</td>
         <td className="py-3 px-4 text-gray-700 max-sm:hidden">{booking.eventType || "N/A"}</td>

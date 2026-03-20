@@ -8,6 +8,7 @@ const CancelRequests = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [bookings, setBookings] = useState([]);
+  const bookingList = Array.isArray(bookings) ? bookings : [];
 
   const fetchCancelRequests = async () => {
     setLoading(true);
@@ -78,7 +79,7 @@ const CancelRequests = () => {
           </div>
     <div className="mt-20">
      
-      {bookings.length === 0 ? (
+      {bookingList.length === 0 ? (
         <p>No cancel requests found.</p>
       ) : (
         <div className="overflow-x-auto border rounded-lg">
@@ -99,7 +100,7 @@ const CancelRequests = () => {
               </tr>
             </thead>
             <tbody>
-              {bookings.map((b) => (
+              {bookingList.map((b) => (
                 <tr key={b._id} className="text-center">
                   <td className="py-2 px-4 border">
                     {b.name} ({b.email})

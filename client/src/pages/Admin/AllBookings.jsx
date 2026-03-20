@@ -8,6 +8,7 @@ import { buildApiUrl } from '../../config/api';
 const AllBookings = () => {
   const navigate = useNavigate();
   const [bookings, setBookings] = useState([]);
+  const bookingList = Array.isArray(bookings) ? bookings : [];
 
   useEffect(() => {
     // Fetch all bookings from backend API
@@ -20,7 +21,7 @@ const AllBookings = () => {
           buildApiUrl("/api/v1/admin/all-bookings"),
           { headers: { Authorization: `Bearer ${token}` } }
         );
-        setBookings(data.bookings || data);
+        setBookings(Array.isArray(data?.bookings) ? data.bookings : Array.isArray(data) ? data : []);
       } catch (error) {
         console.log("Error fetching bookings:", error);
       }
@@ -72,7 +73,7 @@ const AllBookings = () => {
           </thead>
 
           <tbody>
-            {bookings.map((b, idx) => (
+            {bookingList.map((b, idx) => (
               <tr key={idx} className="text-sm text-gray-700">
                 {/* Mobile par hide ho jaye */}
                 <td className="py-2 px-4 border-b">{b.name}</td>
