@@ -3,6 +3,7 @@ import Title from '../../components/Title'
 import { assets} from '../../assets/assets'
 import { FiCalendar, FiXCircle } from "react-icons/fi";
 import axios from 'axios';
+import { buildApiUrl } from '../../config/api';
 
 const Dashboard = () => {
       
@@ -19,7 +20,7 @@ const Dashboard = () => {
         const fetchDashboardStats =async () =>{
             try{
                 const token = localStorage.getItem("token");
-                const res = await axios.get("/api/v1/admin/dashboard-stats",{
+                const res = await axios.get(buildApiUrl("/api/v1/admin/dashboard-stats"),{
                 headers: { Authorization: `Bearer ${token}` }
                 });
                 setDashboardData({
