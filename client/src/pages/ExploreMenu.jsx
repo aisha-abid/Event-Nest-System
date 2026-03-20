@@ -88,6 +88,8 @@ const ExploreMenu = () => {
                   src={item.img}
                   alt={item.name}
                   className="h-55 w-full object-cover rounded-lg"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <h3 className="mt-3 text-lg font-semibold">{item.name}</h3>
                 {item.desc && <p className="text-sm text-gray-500">{item.desc}</p>}

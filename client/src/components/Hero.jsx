@@ -1,4 +1,5 @@
 import { assets,  eventTypes } from '../assets/assets'
+import heroImage from '../assets/heroImage1-optimized.jpg'
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
@@ -58,9 +59,11 @@ const checkAvailability = async (e) => {
    
 
   return (
-    <div id='home' className='flex flex-col items-start justify-center px-6 md:px-16 lg:px:24 xl:px-32 text-black
-
-    bg-[url("/src/assets/heroImage1.jpg")] bg-no-repeat bg-cover bg-center h-screen'>
+    <div
+      id='home'
+      className='flex flex-col items-start justify-center px-6 md:px-16 lg:px:24 xl:px-32 text-black bg-no-repeat bg-cover bg-center h-screen'
+      style={{ backgroundImage: `url(${heroImage})` }}
+    >
    
    <p className='bg-[#49B9FF]/50 px-3.5 py-1 rounded-full mt-20'>One Platform. Endless Celebrations.</p>
    <h1 className='font-playfair text-2xl md:text-5xl md:text-[56px] md:leading-[56px] font-bold md:font-extrabold max-w-xl mt-4'>Create Unforgettable  Memories at EventNest</h1>

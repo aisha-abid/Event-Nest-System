@@ -19,7 +19,7 @@ const OurMenu = () => {
       <div className="flex flex-col md:flex-row items-center justify-center gap-8 pt-12">
         {/* Silver Package */}
         <div className="max-w-72 w-full rounded-2xl shadow-md overflow-hidden hover:scale-105 transition duration-300">
-          <img className="w-full h-40 object-cover" src={assets.silver} alt="" />
+          <img className="w-full h-40 object-cover" src={assets.silver} alt="" loading="lazy" decoding="async" />
           <div className="p-4">
             <h1 className="text-xl font-semibold mb-3 text-gray-800">Silver Package   <span className="text-sm text-gray-500">(USD 100 / head)</span></h1>
             <ul className="text-sm text-gray-600 space-y-1 list-disc list-inside">
@@ -35,7 +35,7 @@ const OurMenu = () => {
 
         {/* Gold Package - Highlighted */}
         <div className="max-w-72 w-full rounded-2xl shadow-lg  overflow-hidden hover:scale-105 transition duration-300">
-           <img className="w-full h-40 object-cover" src={assets.food} alt="" />
+           <img className="w-full h-40 object-cover" src={assets.food} alt="" loading="lazy" decoding="async" />
           <div className="p-4">
             <h1 className="text-xl font-semibold mb-3 text-gray-900">Gold Package   <span className="text-sm text-gray-500">(USD 150 / head)</span></h1>
             <ul className="text-sm text-gray-700 space-y-1 list-disc list-inside">
@@ -51,7 +51,7 @@ const OurMenu = () => {
 
         {/* Custom Package - Special */}
         <div className="max-w-72 w-full rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition duration-300">
-          <img className="w-full h-40 object-cover" src={assets.custom} alt="" />
+          <img className="w-full h-40 object-cover" src={assets.custom} alt="" loading="lazy" decoding="async" />
           <div className="p-4">
             <div className="flex items-center justify-between mb-2">
               <h1 className="text-xl font-semibold">Custom Package<span className="text-sm text-gray-500">   (Flexible)</span></h1>
