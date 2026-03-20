@@ -5,6 +5,7 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import { FaHourglass  } from "react-icons/fa"; 
 import { packageRules } from '../config/packages'
+import { buildApiUrl } from '../config/api'
 
 const CustomerDashboard = ({ user }) => {
   const [loading, setLoading] = useState(true);
@@ -53,7 +54,7 @@ const [selectedBooking, setSelectedBooking] = useState(null);
     const token = localStorage.getItem("token");
 
     const res = await axios.post(
-      `http://localhost:5000/api/v1/refund`,
+      buildApiUrl("/api/v1/refund"),
       { bookingId },
       { headers: { Authorization: `Bearer ${token}` } }
     );

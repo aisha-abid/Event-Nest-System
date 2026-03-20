@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { showCustomToast } from "../utils/toastUtils";
+import { buildApiUrl } from "../config/api";
 
 const SummaryBooking = () => {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ const SummaryBooking = () => {
     const fetchBooking = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('http://localhost:5000/api/v1/bookings/my-bookings', {
+        const res = await axios.get(buildApiUrl('/api/v1/bookings/my-bookings'), {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (res.data && res.data.length > 0) {

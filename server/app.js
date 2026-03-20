@@ -20,7 +20,7 @@ const app = express();
 
 app.use(cors({
   //check code ok
-  origin: process.env.FRONTEND_URL, // frontend ka URL 
+  origin: process.env.FRONTEND_URL || "https://event-nest-system.onrender.com", // frontend ka URL 
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
   credentials: true, // agar cookies/token use kar rahe ho
 }));

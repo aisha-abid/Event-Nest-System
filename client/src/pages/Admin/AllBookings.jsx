@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Title from '../../components/Title';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { buildApiUrl } from '../../config/api';
 
 
 const AllBookings = () => {
@@ -16,7 +17,7 @@ const AllBookings = () => {
         console.log(localStorage.getItem("token"));
 
         const { data } = await axios.get(
-          "http://localhost:5000/api/v1/admin/all-bookings",
+          buildApiUrl("/api/v1/admin/all-bookings"),
           { headers: { Authorization: `Bearer ${token}` } }
         );
         setBookings(data.bookings || data);

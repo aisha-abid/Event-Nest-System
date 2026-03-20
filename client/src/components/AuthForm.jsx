@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { showCustomToast } from "../utils/toastUtils";
+import { buildApiUrl } from "../config/api";
 
 const AuthForm = ({ onLogin }) => {
   const [state, setState] = useState("login");
@@ -44,10 +45,10 @@ const AuthForm = ({ onLogin }) => {
       let payload = {};
 
       if (state === "register") {
-        url = "http://localhost:5000/api/v1/auth/register";
+        url = buildApiUrl("/api/v1/auth/register");
         payload = { name, email, password };
       } else {
-        url = "http://localhost:5000/api/v1/auth/login";
+        url = buildApiUrl("/api/v1/auth/login");
         payload = { email, password };
       }
 

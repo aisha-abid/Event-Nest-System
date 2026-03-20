@@ -2,9 +2,9 @@ import { useState, useRef, useEffect } from "react";
 import { FiSend } from "react-icons/fi";
 import axios from 'axios'
 import { io } from "socket.io-client";
+import { SOCKET_URL } from "../../config/api";
 
-//  Make sure REACT_APP_SOCKET_URL is set (e.g., http://localhost:5000)
-const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || "http://localhost:5000";
+//  Make sure VITE_SOCKET_URL is set for the deployed backend/socket origin.
 
 const ChatWindow = ({ user }) => {
   const [isScrolled, setIsScrolled] = useState(false);

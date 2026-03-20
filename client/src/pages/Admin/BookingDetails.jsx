@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { buildApiUrl } from "../../config/api";
 
 const BookingDetails = ({ fetchBookings }) => {
   const [loading, setLoading] = useState(false);
@@ -42,7 +43,7 @@ const BookingDetails = ({ fetchBookings }) => {
       try {
         const token = localStorage.getItem("token");
         const { data } = await axios.get(
-          `http://localhost:5000/api/v1/admin/booking/${id}`,
+          buildApiUrl(`/api/v1/admin/booking/${id}`),
           { headers: { Authorization: `Bearer ${token}` } }
         );
         setBooking(data.booking);

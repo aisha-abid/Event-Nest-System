@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { showCustomToast } from "../utils/toastUtils";
+import { buildApiUrl } from "../config/api";
 
 const UpdateBooking = () => {
   const { id } = useParams();
@@ -45,7 +46,7 @@ const UpdateBooking = () => {
       try {
         // Booking detail
         const bookingRes = await axios.get(
-          `http://localhost:5000/api/v1/customers/${id}`,
+          buildApiUrl(`/api/v1/customers/${id}`),
           { headers: { Authorization: `Bearer ${token}` } }
         );
 
@@ -70,7 +71,7 @@ const UpdateBooking = () => {
         ];
 
         const requests = categories.map((cat) =>
-          axios.get(`http://localhost:5000/api/v1/foods/category/${cat}`, {
+          axios.get(buildApiUrl(`/api/v1/foods/category/${cat}`), {
             headers: { Authorization: `Bearer ${token}` },
           })
         );
@@ -136,7 +137,7 @@ const UpdateBooking = () => {
 
     try {
       await axios.put(
-        `http://localhost:5000/api/v1/customers/update/${id}`,
+        buildApiUrl(`/api/v1/customers/update/${id}`),
         formData,
         { headers: { Authorization: `Bearer ${token}` } }
       );

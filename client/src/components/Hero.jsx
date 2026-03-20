@@ -5,6 +5,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { showCustomToast } from "../utils/toastUtils";
 import toast from "react-hot-toast";
+import { buildApiUrl } from "../config/api";
 
 
 const Hero = () => {
@@ -30,7 +31,7 @@ const checkAvailability = async (e) => {
     // ✅ Step 2: Availability check code
    try {
       const res = await axios.post(
-        "http://localhost:5000/api/v1/bookings/check-availability",
+        buildApiUrl("/api/v1/bookings/check-availability"),
         {
           eventDate: formData.eventDate,
           eventTime: formData.eventTime,

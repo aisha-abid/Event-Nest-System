@@ -2,6 +2,7 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { showCustomToast } from "../utils/toastUtils";
+import { buildApiUrl } from "../config/api";
 
 
 const BookingPage = () => {
@@ -137,7 +138,7 @@ const BookingPage = () => {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.post(
-        "http://localhost:5000/api/v1/bookings/create",
+        buildApiUrl("/api/v1/bookings/create"),
         data,
         {
           headers: {
@@ -174,7 +175,7 @@ const BookingPage = () => {
         ];
         
         const requests = categories.map((cat) =>
-          axios.get(`http://localhost:5000/api/v1/foods/category/${cat}`)
+          axios.get(buildApiUrl(`/api/v1/foods/category/${cat}`))
         );
 
         const responses = await Promise.all(requests);

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { FaUser, FaEnvelope, FaSpinner } from "react-icons/fa";
 import { useElements, useStripe, CardElement } from "@stripe/react-stripe-js";
 import { useParams , useNavigate } from "react-router-dom";
+import { buildApiUrl } from "../config/api";
 
 const PaymentForm = ({ amount = 0,  bookingId }) => {
   console.log("💰 Amount:", amount);
@@ -53,7 +54,7 @@ const PaymentForm = ({ amount = 0,  bookingId }) => {
 
       // 1) Backend: PaymentIntent with authentication
       const { data } = await axios.post(
-        "http://localhost:5000/api/v1/payment/pay",
+        buildApiUrl("/api/v1/payment/pay"),
         { amount, bookingId, name},
         {
           headers: {
@@ -78,7 +79,7 @@ const PaymentForm = ({ amount = 0,  bookingId }) => {
       } else if (result.paymentIntent?.status === "succeeded") {
         // 3) Backend: mark as confirmed with authentication
         await axios.post(
-          "http://localhost:5000/api/v1/payment/confirm",
+          buildApiUrl("/api/v1/payment/confirm"),
           {
             paymentId,
             paymentIntentId: result.paymentIntent.id,
