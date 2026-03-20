@@ -29,7 +29,7 @@ const [selectedBooking, setSelectedBooking] = useState(null);
          console.log("Token:", token);
         if (!token) throw new Error("Please login first");
 
-        const { data } = await axios.get("/api/v1/bookings/my-bookings", {
+        const { data } = await axios.get(buildApiUrl("/api/v1/bookings/my-bookings"), {
           headers: { Authorization: `Bearer ${token}` }
         });
 
@@ -70,7 +70,7 @@ const [selectedBooking, setSelectedBooking] = useState(null);
 
     // Step 2: Few seconds baad delete kar do
     setTimeout(async () => {
-      await axios.delete(`/api/v1/bookings/${bookingId}`);
+      await axios.delete(buildApiUrl(`/api/v1/bookings/${bookingId}`));
       setBookings((prev) => prev.filter((b) => b._id !== bookingId));
     }, 2500); // 2.5 seconds baad delete hoga
 
@@ -92,7 +92,7 @@ const handleCancelConfirm = async () => {
     const token = localStorage.getItem("token");
 
     // 1. pehle booking detail le aao (taake check kar sako paid hai ya unpaid)
-    const bookingRes = await axios.get(`/api/v1/customers/${selectedBookingId}`, {
+    const bookingRes = await axios.get(buildApiUrl(`/api/v1/customers/${selectedBookingId}`), {
       headers: { Authorization: `Bearer ${token}` }
     });
 
@@ -101,7 +101,7 @@ const handleCancelConfirm = async () => {
     if (booking.paymentStatus === "Paid") {
       // 🔹 Paid → sirf cancelRequest ko Pending karo (PATCH)
       const res = await axios.patch(
-        `/api/v1/customers/${selectedBookingId}/cancel`,
+        buildApiUrl(`/api/v1/customers/${selectedBookingId}/cancel`),
         { cancelRequest: "Pending" },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -123,7 +123,7 @@ const handleCancelConfirm = async () => {
     } else {
       // 🔹 Unpaid → direct delete
       const res = await axios.delete(
-        `/api/v1/customers/delete/${selectedBookingId}`,
+        buildApiUrl(`/api/v1/customers/delete/${selectedBookingId}`),
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
